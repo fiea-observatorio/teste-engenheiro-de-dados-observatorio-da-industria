@@ -19,6 +19,8 @@ tar xf hadoop-3.3.6.tar.gz && \
 mv hadoop-3.3.6 /opt && \
 rm -rf hadoop-3.3.6.tar.gz
 
+RUN pip install apache-airflow-providers-papermill
+
 USER airflow
 
 COPY requirements.txt /
