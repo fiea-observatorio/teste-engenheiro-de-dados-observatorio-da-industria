@@ -1,5 +1,7 @@
 import pendulum
+
 from airflow.decorators import dag
+from airflow.providers.papermill.operators.papermill import PapermillOperator
 
 default_args = {
     "owner": "airflow",
@@ -11,18 +13,16 @@ default_args = {
     "retry_delay": pendulum.duration(minutes=5),
 }
 
-
 @dag(
     default_args=default_args,
-    description="",
+    description="DAG para pesquisa industrial anual de empresas",
     schedule=None,
     start_date=pendulum.datetime(2024, 3, 22, tz="America/Sao_Paulo"),
     catchup=False,
 )
+
 def pesquisa_industrial_anual_empresas():
     import os
-
-    from airflow.providers.papermill.operators.papermill import PapermillOperator
 
     PapermillOperator(
         task_id="workspace",
