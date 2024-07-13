@@ -7,4 +7,5 @@ apache-airflow-providers-papermill
 apache-airflow-providers-celery
 apache-airflow-providers-redis
 psycopg2-binary
+pyspark
 ipykernel

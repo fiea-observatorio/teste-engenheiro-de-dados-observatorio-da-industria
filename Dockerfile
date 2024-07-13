@@ -1,4 +1,4 @@
-FROM apache/airflow:slim-2.8.3-python3.11
+FROM apache/airflow:2.9.2
 
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64/
 ENV HADOOP_HOME /opt/hadoop-3.3.6
@@ -24,4 +24,4 @@ USER airflow
 COPY requirements.txt /
 
 RUN set -eux; \
-    pip install --no-cache-dir "apache-airflow==2.8.3" -r /requirements.txt
+    pip install -r /requirements.txt
