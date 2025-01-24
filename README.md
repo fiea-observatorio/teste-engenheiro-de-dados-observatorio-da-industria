@@ -13,8 +13,8 @@ Este repositório é parte de um teste técnico para avaliar a capacidade de res
 1. **Clonar o Repositório:**
 
    ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DA_PASTA_CLONADA>
+   git clone https://github.com/arrudafdc/teste-engenheiro-de-dados-observatorio-da-industria.git
+   cd teste-engenheiro-de-dados-observatorio-da-industria
    ```
 
 2. **Construir e Inicializar o Ambiente:**
