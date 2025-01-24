@@ -1,15 +1,18 @@
 x-airflow-common: &airflow-common
+  build:
+    context: .
+    dockerfile: Dockerfile
   image: local-cluster-airflow:1.0.0
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
-    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "true"
 
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-    
+
     # configure as chaves abaixo
-    AIRFLOW__CORE__FERNET_KEY: ''
-    AIRFLOW__WEBSERVER__SECRET_KEY: ''
+    AIRFLOW__CORE__FERNET_KEY: "${AIRFLOW__CORE__FERNET_KEY}"
+    AIRFLOW__WEBSERVER__SECRET_KEY: "${AIRFLOW__WEBSERVER__SECRET_KEY}"
 
     AIRFLOW_UID: 50000
 
@@ -32,10 +35,10 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     healthcheck:
-      test: [ "CMD", "pg_isready", "-p", "5432", "-U", "airflow" ]
+      test: ["CMD", "pg_isready", "-p", "5432", "-U", "airflow"]
       interval: 5s
       retries: 5
-    
+
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -53,18 +56,18 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-  
+
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
     # yamllint enable rule:line-length
     environment:
       <<: *airflow-common-env
-      _AIRFLOW_DB_MIGRATE: 'true'
-      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_DB_MIGRATE: "true"
+      _AIRFLOW_WWW_USER_CREATE: "true"
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
-      _PIP_ADDITIONAL_REQUIREMENTS: ''
+      _PIP_ADDITIONAL_REQUIREMENTS: ""
     command:
       - -c
       - |
