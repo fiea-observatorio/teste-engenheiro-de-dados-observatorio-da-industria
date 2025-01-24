@@ -1,5 +1,6 @@
 logs/*
 dags/resultado/*
+dags/pesquisa_industrial_anual_empresas/__pycache__/*
 
 !logs/
 !resultado/
