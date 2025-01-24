@@ -10,19 +10,26 @@ Este repositório é parte de um teste técnico para avaliar a capacidade de res
 
 ### Configuração do Ambiente
 
-1. **Construir e Inicializar o Ambiente:**
+1. **Clonar o Repositório:**
+
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DA_PASTA_CLONADA>
+   ```
+
+2. **Construir e Inicializar o Ambiente:**
 
    ```bash
    docker-compose up --build -d
    ```
 
-2. **Limpar Imagens Intermediárias:**
+3. **Limpar Imagens Intermediárias:**
 
    ```bash
    docker image prune -f
    ```
 
-3. **Acessar a Interface Web do Airflow:**
+4. **Acessar a Interface Web do Airflow:**
 
    [http://localhost:11000](http://localhost:11000)
 
