@@ -1,24 +1,41 @@
-# Objetivo principal
+# Teste Técnico: Configuração e Execução de um Pipeline de Dados
 
-- Testar a capacidade do candidato resolver problemas comuns no dia a dia de um Engenheiro de dados junior.
+Este repositório é parte de um teste técnico para avaliar a capacidade de resolver problemas comuns enfrentados por um Engenheiro de Dados. Siga as instruções abaixo para configurar o ambiente, implementar as soluções e submeter o resultado.
 
-## Objetivos secundários
+## Requisitos do Ambiente
 
-- Configurar o docker-compose adequadamente
-- Instalar os pacotes necessários
-- Criar pastas e ajustar permissões se for necessário
-- Extrair as informações da Pesquisa Industrial Anual - Empresas do ibge
-- Transformar os dados extraidos em um dataframe usando pyspark e mostrar o resutado
-- Executar a DAG pesquisa_industrial_anual_empresas
+### Ferramentas Necessárias
 
-Observação: Todo o código deve ser escrito no notebook workspace.ipynb, na pasta notebooks 
+- Docker
 
-## Aplicação e avaliação
+### Configuração do Ambiente
 
-### Aplicaçao
+1. **Construir e Inicializar o Ambiente:**
 
-O candidato deve fazer um fork ou baixar o zip do projeto, realizar todas as correções e implementações necessárias, enviar tudo para o github ou fazer um zip do projeto e compartilhar no e-mail observatório@sistemafiea.com.br
+   ```bash
+   docker-compose up --build -d
+   ```
 
-### Avaliação
+2. **Limpar Imagens Intermediárias:**
 
-O avaliador deve clonar ou baixar o zip do projeto e descompacta-lo, acessar a pasta do projeto, subir os containers, acessar o airflow no link http://localhost:11000, executar a DAG pesquisa_industrial_anual_empresas e conferir o resultado na pasta resulta
+   ```bash
+   docker image prune -f
+   ```
+
+3. **Acessar a Interface Web do Airflow:**
+
+   [http://localhost:11000](http://localhost:11000)
+
+   Credenciais de acesso padrão:
+
+   - **Usuário:** `airflow`
+   - **Senha:** `airflow`
+
+## Implementação
+
+1. **Execução da DAG:**
+   A DAG `pesquisa_industrial_anual_empresas` deve ser executada na interface do Airflow. O resultado final será salvo na pasta `resultado`.
+
+## Considerações Importantes
+
+- **Neste projeto, optei por incluir o arquivo .env no repositório com o objetivo de facilitar a avaliação do teste técnico. Reconheço que, em situações reais, essa prática não é recomendada devido a questões de segurança e proteção de informações sensíveis, como chaves de API, credenciais e configurações específicas de ambiente.**
